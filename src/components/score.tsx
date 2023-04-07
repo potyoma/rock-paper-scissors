@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
+import { ScoreContext } from "../contexts/scoreContext"
 
 const StyledScore = styled.div`
   color: var(--score);
@@ -7,18 +8,17 @@ const StyledScore = styled.div`
   padding: 0.3rem 1rem;
   border-radius: 10px;
   text-align: center;
-  
 `
 
-interface Props {
-  score: number
-}
+const Score: React.FC = () => {
+  const { score } = useContext(ScoreContext)
 
-const Score: React.FC<Props> = ({ score }) => (
-  <StyledScore>
-    <h4>score</h4>
-    {score}
-  </StyledScore>
-)
+  return (
+    <StyledScore>
+      <h4>score</h4>
+      {score}
+    </StyledScore>
+  )
+}
 
 export default Score

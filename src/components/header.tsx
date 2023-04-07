@@ -21,14 +21,10 @@ const StyledLogo = styled.img`
   width: 3rem;
 `
 
-interface Props {
-  score: number
-}
-
-const Header: React.FC<Props> = ({ score }) => (
+const Header: React.FC = () => (
   <StyledHeader>
     <StyledLogo src={Logo} />
-    <Score score={score} />
+    <Score />
   </StyledHeader>
 )
 
