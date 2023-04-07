@@ -6,6 +6,7 @@ const Variables = css`
 
     // Colors
     --white: #faf8fb;
+    --outline: hsl(217, 16%, 45%);
   }
 `
 

@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <GlobalStyles/>
-      <Button onClick={() => setShowRules(!showRules)}>Rules</Button>
+      <Button onClick={() => setShowRules(!showRules)}>RULES</Button>
     </div>
   )
 }
