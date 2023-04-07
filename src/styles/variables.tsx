@@ -1,5 +1,12 @@
-import { css } from "styled-components";
+import { css } from "styled-components"
 
-const Variables = css``;
+const Variables = css`
+  :root {
+    font-family: "Barlow Semi Condensed", sans-serif;
 
-export default Variables;
+    // Colors
+    --white: #faf8fb;
+  }
+`
+
+export default Variables

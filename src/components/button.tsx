@@ -2,8 +2,8 @@ import styled from "styled-components";
 import React from "react";
 
 interface Props {
-  onClick: (event: React.Event<HTMLButtonElement>) => void;
-  childred?: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  children?: string;
 }
 
 const StyledButton = styled.button<{}>``;

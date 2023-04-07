@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import Button from './components/button'
+import { GlobalStyles } from './styles/globalStyles'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showRules, setShowRules] = useState(false)
 
   return (
     <div>
-      <Button>Rules</Button>
+      <GlobalStyles/>
+      <Button onClick={() => setShowRules(!showRules)}>Rules</Button>
     </div>
   )
 }
