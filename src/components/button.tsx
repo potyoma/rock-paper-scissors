@@ -20,6 +20,7 @@ const StyledButton = styled.button<StyledProps>`
   padding: 0;
   font: inherit;
   cursor: pointer;
+  text-transform: inherit;
 `
 
 const Button: React.FC<Props> = ({ onClick, children }) => (
