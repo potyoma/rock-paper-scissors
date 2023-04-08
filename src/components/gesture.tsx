@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 import Button from "./button"
 import { useEffect, useState } from "react"
+import { device } from "../styles/breakpoints"
 
 interface StyleProps {
   gesture: string
@@ -8,20 +9,30 @@ interface StyleProps {
 }
 
 const GestureContainer = styled.div<StyleProps>`
+  --size: 3rem;
+  --border-size: 1rem;
+
   background-color: var(--white);
   border-radius: 50%;
   padding: 1rem;
-  width: 3rem;
-  height: 3rem;
+  width: var(--size);
+  height: var(--size);
   display: flex;
   justify-content: center;
   align-items: center;
 
+  /* TODO: Add box-shadow */
+
   ${({ size }) => css``}
 
   ${({ gesture }) => css`
-    border: 1rem solid var(--${gesture}-gradient);
+    border: var(--border-size) solid var(--${gesture}-gradient);
   `}
+
+  @media ${device.tablet} {
+    --size: 5rem;
+    --border-size: 1.4rem;
+  }
 `
 
 const GestureImage = styled.img``
