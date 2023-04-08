@@ -18,6 +18,10 @@ const GestureContainer = styled.div`
   justify-content: space-evenly;
 `
 
+const FirstRow = styled.div`
+  z-index: 2;
+`
+
 const MiddleRow = styled.div`
   display: flex;
   width: 100%;
@@ -38,7 +42,9 @@ const GestureSelect: React.FC = () => {
 
   return (
     <>
-      <Gesture gesture="scissors" onSelect={handleSelect} />
+      <FirstRow>
+        <Gesture gesture="scissors" onSelect={handleSelect} />
+      </FirstRow>
       <MiddleRow>
         <Gesture gesture="spock" onSelect={handleSelect} />
         <Gesture gesture="paper" onSelect={handleSelect} />
