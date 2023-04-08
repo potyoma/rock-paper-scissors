@@ -16,12 +16,8 @@ const useClickOutside = (
     const events = ["click", "keyup"]
 
     if (setCallback) {
-      setTimeout(
-        () =>
-          events.forEach(ev =>
-            document.addEventListener(ev, handleClickOutside)
-          ),
-        1000
+      setTimeout(() =>
+        events.forEach(ev => document.addEventListener(ev, handleClickOutside))
       )
       return () =>
         events.forEach(ev =>
