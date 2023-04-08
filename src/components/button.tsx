@@ -20,7 +20,6 @@ const StyledButton = styled.button<StyleProps>`
   background: none;
   padding: 0;
   font: inherit;
-  cursor: pointer;
   text-transform: inherit;
   border: none;
 
@@ -28,6 +27,7 @@ const StyledButton = styled.button<StyleProps>`
     !disabled &&
     css`
       transition: transform 0.3s linear;
+      cursor: pointer;
 
       :hover {
         transform: scale(0.9);

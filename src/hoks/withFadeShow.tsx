@@ -6,7 +6,7 @@ import styled, { StyledComponent } from "styled-components"
 
 const withFadeShow = <TProps extends object>(
   Component: ComponentType<TProps>,
-  stage: GameStage,
+  stage: GameStage | GameStage[],
   container: StyledComponent<"div", any, {}, never>
 ): React.FC<TProps> => {
   const Container = styled(container)`
@@ -18,7 +18,9 @@ const withFadeShow = <TProps extends object>(
 
     const { show, animate } = useFade<GameStage>(
       currentStage,
-      st => st === stage
+      Array.isArray(stage)
+        ? st => stage.some(s => s === st)
+        : st => st === stage
     )
 
     return show ? (

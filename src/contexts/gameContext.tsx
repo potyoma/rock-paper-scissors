@@ -1,5 +1,12 @@
-import React, { ReactNode, createContext, useContext, useState } from "react"
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react"
 import { ScoreContext } from "./scoreContext"
+import { GameResult, getComputerGesture, hasWon } from "../core"
 
 export enum GameStage {
   Select,
@@ -7,19 +14,12 @@ export enum GameStage {
   Finished,
 }
 
-export enum GameResult {
-  None,
-  Win,
-  Loose,
-}
-
 interface GameContextValues {
   stage: GameStage
   restore: () => void
-  win: () => void
-  loose: () => void
   onSelect: (gesture: string) => void
   gesture: string
+  computerGesture: string
 }
 
 const GameContext = createContext<GameContextValues | null>(null)
@@ -28,14 +28,12 @@ const { Provider } = GameContext
 const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [stage, setStage] = useState(GameStage.Select)
   const [gameResult, setGameResult] = useState(GameResult.None)
+  const [computerGesture, setComputerGesture] = useState("")
   const [gesture, setGesture] = useState("")
 
   const { increment } = useContext(ScoreContext)
 
-  const restore = () => {
-    setGameResult(GameResult.None)
-    setStage(GameStage.Select)
-  }
+  const restore = () => setGameResult(GameResult.None)
 
   const handleFinished = () => setStage(GameStage.Finished)
 
@@ -50,13 +48,44 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     handleFinished()
   }
 
+  const draw = () => {
+    setGameResult(GameResult.Draw)
+    handleFinished()
+  }
+
   const onSelect = (gesture: string) => {
     setGesture(gesture)
     setStage(GameStage.Selected)
   }
 
+  useEffect(() => {
+    gesture &&
+      setTimeout(() => {
+        const compGesture = getComputerGesture()
+        setComputerGesture(compGesture)
+      }, 1000)
+  }, [gesture])
+
+  useEffect(() => {
+    if (!computerGesture || !gesture) return
+
+    const status = hasWon(gesture, computerGesture)
+    setGameResult(status)
+  }, [gesture, computerGesture])
+
+  useEffect(() => {
+    if (gameResult === GameResult.None) {
+      setStage(GameStage.Select)
+      return
+    }
+
+    if (gameResult === GameResult.Win) increment()
+
+    handleFinished()
+  }, [gameResult])
+
   return (
-    <Provider value={{ stage, restore, win, loose, gesture, onSelect }}>
+    <Provider value={{ stage, restore, gesture, onSelect, computerGesture }}>
       {children}
     </Provider>
   )
