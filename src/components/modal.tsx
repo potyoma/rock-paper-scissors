@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { HTMLProps, ReactNode, useEffect, useId, useRef } from "react"
 import styled, { css } from "styled-components"
 import CloseButton from "./closeButton"
 import useMediaQuery from "../hooks/useMediaQuery"
@@ -41,7 +41,7 @@ const ModalBody = styled.div`
   max-width: 100%;
 `
 
-const StyledModal = styled.div<StyleProps>`
+const StyledModal = styled.div<HTMLProps<HTMLDivElement> & StyleProps>`
   background-color: var(--white);
   position: absolute;
   top: 0;
@@ -87,9 +87,25 @@ const StyledModal = styled.div<StyleProps>`
 
 const Modal: React.FC<Props> = ({ isOpen, children, header, onClose }) => {
   const closeInHeader = useMediaQuery(device.tablet)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: Event) =>
+      modalRef.current &&
+      !modalRef.current.contains(event.target as Node) &&
+      onClose()
+
+    if (isOpen) {
+      setTimeout(
+        () => document.addEventListener("click", handleClickOutside),
+        1000
+      )
+      return () => document.removeEventListener("click", handleClickOutside)
+    }
+  }, [onClose, isOpen])
 
   return (
-    <StyledModal isOpen={isOpen}>
+    <StyledModal ref={modalRef} isOpen={isOpen}>
       <ModalHeader>
         <TextHeader>{header}</TextHeader>
         {closeInHeader && <CloseButton onClose={onClose} />}
