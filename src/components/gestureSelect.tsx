@@ -3,8 +3,9 @@ import styled from "styled-components"
 import { GameContext, GameStage } from "../contexts/gameContext"
 import background from "../assets/bg-pentagon.svg"
 import Gesture from "./gesture"
+import { Fading } from "../styles/animations"
 
-const GestureContainer = styled.div`
+const GestureContainer = styled(Fading)`
   background-image: url(${background});
   background-repeat: no-repeat;
   background-position: center;
@@ -35,8 +36,8 @@ const GestureSelect = () => {
 
   const handleSelect = (gesture: string) => onSelect?.(gesture)
 
-  return stage === GameStage.Select ? (
-    <GestureContainer>
+  return (
+    <GestureContainer show={stage === GameStage.Select}>
       <Gesture gesture="scissors" onSelect={handleSelect} />
       <MiddleRow>
         <Gesture gesture="spock" onSelect={handleSelect} />
@@ -47,7 +48,7 @@ const GestureSelect = () => {
         <Gesture gesture="rock" onSelect={handleSelect} />
       </LastRow>
     </GestureContainer>
-  ) : null
+  )
 }
 
 export default GestureSelect

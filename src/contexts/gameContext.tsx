@@ -16,7 +16,6 @@ export enum GameResult {
 interface GameContextValues {
   stage: GameStage
   restore: () => void
-  handleSelect: () => void
   win: () => void
   loose: () => void
   onSelect: (gesture: string) => void
@@ -38,8 +37,6 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setStage(GameStage.Select)
   }
 
-  const handleSelect = () => setStage(GameStage.Selected)
-
   const handleFinished = () => setStage(GameStage.Finished)
 
   const win = () => {
@@ -53,12 +50,13 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     handleFinished()
   }
 
-  const onSelect = (gesture: string) => setGesture(gesture)
+  const onSelect = (gesture: string) => {
+    setGesture(gesture)
+    setStage(GameStage.Selected)
+  }
 
   return (
-    <Provider
-      value={{ stage, restore, handleSelect, win, loose, gesture, onSelect }}
-    >
+    <Provider value={{ stage, restore, win, loose, gesture, onSelect }}>
       {children}
     </Provider>
   )

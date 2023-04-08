@@ -9,8 +9,7 @@ interface StyleProps {
 }
 
 const GestureContainer = styled.div<StyleProps>`
-  --size: 3rem;
-  --border-size: 1rem;
+  --transition: box-shadow 0.4s ease-out;
 
   background-color: var(--white);
   border-radius: 50%;
@@ -21,18 +20,43 @@ const GestureContainer = styled.div<StyleProps>`
   justify-content: center;
   align-items: center;
 
+  transition: var(--transition);
+  -moz-transition: var(--transition);
+  -webkit-transition: var(--transition);
+
+  :hover {
+    --shadow: 0px 0px 100px 33px var(--score);
+    -webkit-box-shadow: var(--shadow);
+    -moz-box-shadow: var(--shadow);
+    box-shadow: var(--shadow);
+  }
+
   /* TODO: Add box-shadow */
 
-  ${({ size }) => css``}
+  ${({ size }) =>
+    size === "md"
+      ? css`
+          --size: 3rem;
+          --border-size: 1rem;
+
+          @media ${device.tablet} {
+            --size: 5rem;
+            --border-size: 1.4rem;
+          }
+        `
+      : css`
+          --size: 3rem;
+          --border-size: 1rem;
+
+          @media ${device.tablet} {
+            --size: 5rem;
+            --border-size: 1.4rem;
+          }
+        `}
 
   ${({ gesture }) => css`
     border: var(--border-size) solid var(--${gesture}-gradient);
   `}
-
-  @media ${device.tablet} {
-    --size: 5rem;
-    --border-size: 1.4rem;
-  }
 `
 
 const GestureImage = styled.img``
