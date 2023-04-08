@@ -8,7 +8,7 @@ interface Props {
 
 const StyledRulesButton = styled.div`
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 0;
   right: 0;
   margin: auto;
@@ -18,11 +18,13 @@ const StyledRulesButton = styled.div`
   @media ${device.tablet} {
     bottom: 2rem;
     right: 2rem;
+    left: auto;
   }
 
   @media ${device.desktop} {
     bottom: 3rem;
     right: 3rem;
+    left: auto;
   }
 `
 
