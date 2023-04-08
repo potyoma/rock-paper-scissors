@@ -18,14 +18,14 @@ const ScoreContext = createContext<ScoreContextType>({
   score: 0,
 })
 
+const { Provider } = ScoreContext
+
 const SCORE_KEY = "SCORE"
 
 const ScoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [score, setScore] = useState(0)
 
   const increment = () => setScore(sc => sc + 1)
-
-  const { Provider } = ScoreContext
 
   usePageUnload(() => score > 0 && setStoreValue(SCORE_KEY, score))
 

@@ -7,17 +7,18 @@ const StyledIcon = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
-
-  svg path {
-    fill: var(--dark-text);
-  }
 `
 
 const CloseButton: React.FC<{ onClose: () => void }> = ({ onClose }) => (
   <Button onClick={onClose} size="md">
     <StyledIcon>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+        <path
+          fill="#3B4262"
+          fill-rule="evenodd"
+          d="M16.97 0l2.122 2.121-7.425 7.425 7.425 7.425-2.121 2.12-7.425-7.424-7.425 7.425L0 16.97l7.425-7.425L0 2.121 2.121 0l7.425 7.425L16.971 0z"
+          opacity=".25"
+        />
       </svg>
     </StyledIcon>
   </Button>

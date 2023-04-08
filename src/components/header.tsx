@@ -11,6 +11,7 @@ const StyledHeader = styled.div`
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
+  min-height: 7.5rem;
 
   @media ${device.tablet} {
     max-width: 70%;
