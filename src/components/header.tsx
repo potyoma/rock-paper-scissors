@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import Logo from "../assets/logo-bonus.svg"
 import Score from "./score"
 import { device } from "../styles/breakpoints"
+import Logo from "./logo"
 
 const StyledHeader = styled.div`
   border: 3px solid var(--outline);
@@ -13,17 +13,17 @@ const StyledHeader = styled.div`
   justify-content: space-between;
 
   @media ${device.tablet} {
+    max-width: 70%;
+  }
+
+  @media ${device.desktop} {
     max-width: 50%;
   }
 `
 
-const StyledLogo = styled.img`
-  width: 3rem;
-`
-
 const Header: React.FC = () => (
   <StyledHeader>
-    <StyledLogo src={Logo} />
+    <Logo />
     <Score />
   </StyledHeader>
 )

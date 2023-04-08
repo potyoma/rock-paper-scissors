@@ -3,11 +3,28 @@ import styled from "styled-components"
 import { ScoreContext } from "../contexts/scoreContext"
 
 const StyledScore = styled.div`
-  color: var(--score);
   background-color: var(--white);
-  padding: 0.3rem 1rem;
+  width: 6rem;
+  padding-inline: 0.8rem;
   border-radius: 10px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const ScoreHeader = styled.h4`
+  color: var(--score);
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+`
+
+const ScoreNumber = styled.h3`
+  color: var(--dark-text);
+  font-size: 3rem;
+  line-height: 3rem;
+  margin: 0;
 `
 
 const Score: React.FC = () => {
@@ -15,8 +32,8 @@ const Score: React.FC = () => {
 
   return (
     <StyledScore>
-      <h4>score</h4>
-      {score}
+      <ScoreHeader>score</ScoreHeader>
+      <ScoreNumber>{score}</ScoreNumber>
     </StyledScore>
   )
 }
