@@ -7,6 +7,7 @@ interface StyleProps {
   filled?: boolean
   size?: ButtonSize
   outline?: boolean
+  disabled?: boolean
 }
 
 type Props = StyleProps & {
@@ -23,11 +24,15 @@ const StyledButton = styled.button<StyleProps>`
   text-transform: inherit;
   border: none;
 
-  transition: transform 0.3s linear;
+  ${({ disabled }) =>
+    !disabled &&
+    css`
+      transition: transform 0.3s linear;
 
-  :hover {
-    transform: scale(0.9);
-  }
+      :hover {
+        transform: scale(0.9);
+      }
+    `}
 
   ${({ filled }) =>
     filled

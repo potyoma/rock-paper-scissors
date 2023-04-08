@@ -6,6 +6,7 @@ import { device } from "../styles/breakpoints"
 interface StyleProps {
   gesture: string
   size?: "sm" | "md"
+  disabled?: boolean
 }
 
 const GestureContainer = styled.div<StyleProps>`
@@ -20,18 +21,22 @@ const GestureContainer = styled.div<StyleProps>`
   justify-content: center;
   align-items: center;
 
-  transition: var(--transition);
-  -moz-transition: var(--transition);
-  -webkit-transition: var(--transition);
-
-  :hover {
-    --shadow: 0px 0px 100px 33px var(--score);
-    -webkit-box-shadow: var(--shadow);
-    -moz-box-shadow: var(--shadow);
-    box-shadow: var(--shadow);
-  }
-
   /* TODO: Add box-shadow */
+
+  ${({ disabled }) =>
+    !disabled &&
+    css`
+      transition: var(--transition);
+      -moz-transition: var(--transition);
+      -webkit-transition: var(--transition);
+
+      :hover {
+        --shadow: 0px 0px 100px 33px var(--score);
+        -webkit-box-shadow: var(--shadow);
+        -moz-box-shadow: var(--shadow);
+        box-shadow: var(--shadow);
+      }
+    `}
 
   ${({ size }) =>
     size === "md"
@@ -61,7 +66,7 @@ const GestureContainer = styled.div<StyleProps>`
 
 const GestureImage = styled.img``
 
-type Props = StyleProps & { onSelect: (gesture: string) => void }
+type Props = StyleProps & { onSelect?: (gesture: string) => void }
 
 const Gesture: React.FC<Props> = ({ gesture, size, onSelect }) => {
   const [image, setImage] = useState("")
@@ -75,8 +80,8 @@ const Gesture: React.FC<Props> = ({ gesture, size, onSelect }) => {
   }, [gesture])
 
   return (
-    <Button onClick={() => onSelect(gesture)}>
-      <GestureContainer size={size} gesture={gesture}>
+    <Button onClick={() => onSelect?.(gesture)} disabled={!onSelect}>
+      <GestureContainer size={size} gesture={gesture} disabled={!onSelect}>
         {image && <GestureImage src={image} />}
       </GestureContainer>
     </Button>

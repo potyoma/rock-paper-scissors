@@ -1,9 +1,10 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { GameContext, GameStage } from "../contexts/gameContext"
 import background from "../assets/bg-pentagon.svg"
 import Gesture from "./gesture"
 import { Fading } from "../styles/animations"
+import withFadeShow, { Show } from "../hoks/withFadeShow"
 
 const GestureContainer = styled(Fading)`
   background-image: url(${background});
@@ -31,13 +32,13 @@ const LastRow = styled.div`
   margin-top: 2.4rem;
 `
 
-const GestureSelect = () => {
-  const { stage, onSelect } = useContext(GameContext) ?? {}
+const GestureSelect: React.FC<Show> = ({ show }) => {
+  const { onSelect } = useContext(GameContext) ?? {}
 
   const handleSelect = (gesture: string) => onSelect?.(gesture)
 
   return (
-    <GestureContainer show={stage === GameStage.Select}>
+    <GestureContainer show={show}>
       <Gesture gesture="scissors" onSelect={handleSelect} />
       <MiddleRow>
         <Gesture gesture="spock" onSelect={handleSelect} />
@@ -51,4 +52,4 @@ const GestureSelect = () => {
   )
 }
 
-export default GestureSelect
+export default withFadeShow(GestureSelect, GameStage.Select)
