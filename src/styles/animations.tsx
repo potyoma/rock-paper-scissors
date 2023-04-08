@@ -22,7 +22,7 @@ const Animations = css`
   }
 `
 
-export const Fading = styled.div<{ show: boolean }>`
+export const Fading = css<{ show: boolean }>`
   ${({ show }) =>
     show
       ? css`

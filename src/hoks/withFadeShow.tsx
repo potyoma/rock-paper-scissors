@@ -9,17 +9,20 @@ const withFadeShow = <TProps extends object>(
   stage: GameStage,
   container: StyledComponent<"div", any, {}, never>
 ): React.FC<TProps> => {
-  const Container = styled(container)<{ show: true }>`
+  const Container = styled(container)`
     ${Fading}
   `
 
   return props => {
     const { stage: currentStage } = useContext(GameContext) ?? {}
 
-    const show = useFade<GameStage>(currentStage, st => st === stage)
+    const { show, animate } = useFade<GameStage>(
+      currentStage,
+      st => st === stage
+    )
 
     return show ? (
-      <Container show={show}>
+      <Container show={animate}>
         <Component {...(props as TProps)} />
       </Container>
     ) : null

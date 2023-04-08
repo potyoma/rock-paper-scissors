@@ -3,14 +3,19 @@ import { useEffect, useState } from "react"
 const useFade = <T,>(
   watch: T | undefined,
   callback: (val: T | undefined) => boolean
-): boolean => {
+) => {
   const [show, setShow] = useState(false)
+  const [animate, setAnimate] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setShow(callback(watch)), 500)
-  }, [watch])
+    setAnimate(callback(watch))
+  }, [callback, watch])
 
-  return show
+  useEffect(() => {
+    setTimeout(() => setShow(animate), 500)
+  }, [animate])
+
+  return { show, animate }
 }
 
 export default useFade
