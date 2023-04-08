@@ -3,6 +3,7 @@ import styled, { css } from "styled-components"
 import CloseButton from "./closeButton"
 import useMediaQuery from "../hooks/useMediaQuery"
 import { device } from "../styles/breakpoints"
+import useClickOutside from "../hooks/useClickOutside"
 
 interface StyleProps {
   isOpen: boolean
@@ -89,20 +90,11 @@ const Modal: React.FC<Props> = ({ isOpen, children, header, onClose }) => {
   const closeInHeader = useMediaQuery(device.tablet)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const handleClickOutside = (event: Event) =>
-      modalRef.current &&
-      !modalRef.current.contains(event.target as Node) &&
-      onClose()
+  useClickOutside(modalRef, onClose, isOpen)
 
-    if (isOpen) {
-      setTimeout(
-        () => document.addEventListener("click", handleClickOutside),
-        1000
-      )
-      return () => document.removeEventListener("click", handleClickOutside)
-    }
-  }, [onClose, isOpen])
+  useEffect(() => {
+    isOpen && modalRef?.current?.focus()
+  }, [isOpen])
 
   return (
     <StyledModal ref={modalRef} isOpen={isOpen}>
