@@ -1,26 +1,21 @@
-import { useContext, useState } from "react"
-import Button from "./components/button"
+import { useState } from "react"
 import { GlobalStyles } from "./styles/globalStyles"
 import Header from "./components/header"
-import { ScoreContext, ScoreProvider } from "./contexts/scoreContext"
+import { ScoreProvider } from "./contexts/scoreContext"
+import RulesButton from "./components/rulesButton"
+import RulesModal from "./components/rulesModal"
 
 function App() {
   const [showRules, setShowRules] = useState(false)
-
-  const IncrButton = () => {
-    const { increment } = useContext(ScoreContext)
-
-    return <Button onClick={increment}>increment</Button>
-  }
 
   return (
     <div>
       <GlobalStyles />
       <ScoreProvider>
         <Header />
-        <IncrButton />
       </ScoreProvider>
-      <Button onClick={() => setShowRules(!showRules)}>Rules</Button>
+      <RulesButton onClick={() => setShowRules(!showRules)} />
+      <RulesModal isOpen={showRules} onClose={() => setShowRules(false)} />
     </div>
   )
 }
