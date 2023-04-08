@@ -3,10 +3,9 @@ import styled from "styled-components"
 import { GameContext, GameStage } from "../contexts/gameContext"
 import background from "../assets/bg-pentagon.svg"
 import Gesture from "./gesture"
-import { Fading } from "../styles/animations"
-import withFadeShow, { Show } from "../hoks/withFadeShow"
+import withFadeShow from "../hoks/withFadeShow"
 
-const GestureContainer = styled(Fading)`
+const GestureContainer = styled.div`
   background-image: url(${background});
   background-repeat: no-repeat;
   background-position: center;
@@ -32,13 +31,13 @@ const LastRow = styled.div`
   margin-top: 2.4rem;
 `
 
-const GestureSelect: React.FC<Show> = ({ show }) => {
+const GestureSelect: React.FC = () => {
   const { onSelect } = useContext(GameContext) ?? {}
 
   const handleSelect = (gesture: string) => onSelect?.(gesture)
 
   return (
-    <GestureContainer show={show}>
+    <>
       <Gesture gesture="scissors" onSelect={handleSelect} />
       <MiddleRow>
         <Gesture gesture="spock" onSelect={handleSelect} />
@@ -48,8 +47,8 @@ const GestureSelect: React.FC<Show> = ({ show }) => {
         <Gesture gesture="lizard" onSelect={handleSelect} />
         <Gesture gesture="rock" onSelect={handleSelect} />
       </LastRow>
-    </GestureContainer>
+    </>
   )
 }
 
-export default withFadeShow(GestureSelect, GameStage.Select)
+export default withFadeShow(GestureSelect, GameStage.Select, GestureContainer)

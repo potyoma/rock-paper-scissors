@@ -1,21 +1,23 @@
 import styled from "styled-components"
-import { Fading } from "../styles/animations"
 import { useContext } from "react"
 import { GameContext, GameStage } from "../contexts/gameContext"
 import Gesture from "./gesture"
+import withFadeShow from "../hoks/withFadeShow"
 
-const SelectedContainer = styled(Fading)``
+const SelectedContainer = styled.div``
 
 const SelectedGesture = () => {
-  const { stage, gesture } = useContext(GameContext) ?? {}
+  const { gesture } = useContext(GameContext) ?? {}
 
-  const show = stage === GameStage.Selected
-
-  return show ? (
-    <SelectedContainer show={show}>
+  return (
+    <>
       <Gesture gesture={gesture!} size="md" disabled />
-    </SelectedContainer>
-  ) : null
+    </>
+  )
 }
 
-export default SelectedGesture
+export default withFadeShow(
+  SelectedGesture,
+  GameStage.Selected,
+  SelectedContainer
+)
