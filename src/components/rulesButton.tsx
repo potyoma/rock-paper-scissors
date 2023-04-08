@@ -8,8 +8,12 @@ interface Props {
 
 const StyledRulesButton = styled.div`
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
 
   @media ${device.tablet} {
     bottom: 2rem;
