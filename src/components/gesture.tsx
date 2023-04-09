@@ -9,6 +9,16 @@ interface StyleProps {
   disabled?: boolean
 }
 
+export const GestureMd = css`
+  --size: 3.6rem;
+  --border-size: 1.1rem;
+
+  @media ${device.tablet} {
+    --size: 5rem;
+    --border-size: 1.4rem;
+  }
+`
+
 const GestureContainer = styled.div<StyleProps>`
   --transition: box-shadow 0.4s ease-out;
 
@@ -41,8 +51,8 @@ const GestureContainer = styled.div<StyleProps>`
   ${({ size }) =>
     size === "md"
       ? css`
-          --size: 3rem;
-          --border-size: 1rem;
+          --size: 3.6rem;
+          --border-size: 1.1rem;
 
           @media ${device.tablet} {
             --size: 5rem;

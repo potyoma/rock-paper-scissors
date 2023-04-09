@@ -20,7 +20,7 @@ interface GameContextValues {
   onSelect: (gesture: string) => void
   gesture: string
   computerGesture: string
-  winner: string
+  gameResult: GameResult
 }
 
 const GameContext = createContext<GameContextValues | null>(null)
@@ -31,14 +31,10 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [gameResult, setGameResult] = useState(GameResult.None)
   const [computerGesture, setComputerGesture] = useState("")
   const [gesture, setGesture] = useState("")
-  const [winner, setWinner] = useState("")
 
   const { increment } = useContext(ScoreContext)
 
-  const restore = () => {
-    setGameResult(GameResult.None)
-    setWinner("")
-  }
+  const restore = () => setGameResult(GameResult.None)
 
   const handleFinished = () => setStage(GameStage.Finished)
 
@@ -65,14 +61,10 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     switch (gameResult) {
       case GameResult.None:
-        winner && setWinner("")
         setStage(GameStage.Select)
         break
       case GameResult.Win:
         increment()
-        setWinner(gesture)
-      case GameResult.Loose:
-        setWinner(computerGesture)
       default:
         handleFinished()
     }
@@ -80,7 +72,7 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <Provider
-      value={{ winner, stage, restore, gesture, onSelect, computerGesture }}
+      value={{ stage, restore, gesture, onSelect, computerGesture, gameResult }}
     >
       {children}
     </Provider>

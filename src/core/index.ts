@@ -5,7 +5,7 @@ const random = (limit: number) =>
 
 const getComputerGesture = () => {
   const gestures = ["rock", "paper", "scissors", "lizard", "spock"]
-  const gestureIndex = random(gestures.length)
+  const gestureIndex = random(gestures.length - 1)
   return gestures[gestureIndex]
 }
 
