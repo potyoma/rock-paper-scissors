@@ -20,6 +20,7 @@ interface GameContextValues {
   onSelect: (gesture: string) => void
   gesture: string
   computerGesture: string
+  winner: string
 }
 
 const GameContext = createContext<GameContextValues | null>(null)
@@ -30,28 +31,16 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [gameResult, setGameResult] = useState(GameResult.None)
   const [computerGesture, setComputerGesture] = useState("")
   const [gesture, setGesture] = useState("")
+  const [winner, setWinner] = useState("")
 
   const { increment } = useContext(ScoreContext)
 
-  const restore = () => setGameResult(GameResult.None)
+  const restore = () => {
+    setGameResult(GameResult.None)
+    setWinner("")
+  }
 
   const handleFinished = () => setStage(GameStage.Finished)
-
-  const win = () => {
-    setGameResult(GameResult.Win)
-    increment()
-    handleFinished()
-  }
-
-  const loose = () => {
-    setGameResult(GameResult.Loose)
-    handleFinished()
-  }
-
-  const draw = () => {
-    setGameResult(GameResult.Draw)
-    handleFinished()
-  }
 
   const onSelect = (gesture: string) => {
     setGesture(gesture)
@@ -74,18 +63,25 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, [gesture, computerGesture])
 
   useEffect(() => {
-    if (gameResult === GameResult.None) {
-      setStage(GameStage.Select)
-      return
+    switch (gameResult) {
+      case GameResult.None:
+        winner && setWinner("")
+        setStage(GameStage.Select)
+        break
+      case GameResult.Win:
+        increment()
+        setWinner(gesture)
+      case GameResult.Loose:
+        setWinner(computerGesture)
+      default:
+        handleFinished()
     }
-
-    if (gameResult === GameResult.Win) increment()
-
-    handleFinished()
   }, [gameResult])
 
   return (
-    <Provider value={{ stage, restore, gesture, onSelect, computerGesture }}>
+    <Provider
+      value={{ winner, stage, restore, gesture, onSelect, computerGesture }}
+    >
       {children}
     </Provider>
   )

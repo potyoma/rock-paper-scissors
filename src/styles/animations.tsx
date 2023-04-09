@@ -35,4 +35,8 @@ export const Fading = css<{ show: boolean }>`
         `}
 `
 
+export const FadingComponent = styled.div<{ show: boolean }>`
+  ${Fading}
+`
+
 export default Animations

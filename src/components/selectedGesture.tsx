@@ -3,14 +3,12 @@ import { useContext } from "react"
 import { GameContext, GameStage } from "../contexts/gameContext"
 import Gesture from "./gesture"
 import withFadeShow from "../hoks/withFadeShow"
-import { Fading } from "../styles/animations"
+import { FadingComponent } from "../styles/animations"
 
 const SelectedContainer = styled.div``
 
-const ComputerGesture = styled.div<{ show: boolean }>`
-  /* width:  */
-
-  ${Fading}
+const ComputerGesture = styled.div`
+  
 `
 
 const SelectedGesture = () => {
@@ -19,8 +17,10 @@ const SelectedGesture = () => {
   return (
     <>
       <Gesture gesture={gesture!} size="md" disabled />
-      <ComputerGesture show={!!computerGesture}>
-        <Gesture gesture={computerGesture!} disabled />
+      <ComputerGesture>
+        <FadingComponent show={!!computerGesture}>
+          <Gesture gesture={computerGesture!} disabled />
+        </FadingComponent>
       </ComputerGesture>
     </>
   )
