@@ -4,6 +4,7 @@ import { GameContext, GameStage } from "../contexts/gameContext"
 import Button from "./button"
 import { useContext, useEffect, useState } from "react"
 import { GameResult } from "../core"
+import { device } from "../styles/breakpoints"
 
 const PlayAgainContainer = styled.div`
   display: flex;
@@ -12,10 +13,20 @@ const PlayAgainContainer = styled.div`
 `
 
 const Description = styled.h2`
+  --size: 2.5rem;
+  --height: 2rem;
+  --margin: 1rem;
+
   color: var(--white);
-  font-size: 2.5rem;
-  line-height: 2rem;
-  margin: 1rem;
+  font-size: var(--size);
+  line-height: var(--height);
+  margin: var(--margin);
+
+  @media ${device.tablet} {
+    --size: 5rem;
+    --height: 4rem;
+    --margin: 2rem;
+  }
 `
 
 const PlayAgain = () => {

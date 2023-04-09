@@ -5,6 +5,7 @@ import Gesture, { GestureMd } from "./gesture"
 import withFadeShow from "../hoks/withFadeShow"
 import { FadingComponent } from "../styles/animations"
 import { GameResult } from "../core"
+import { device } from "../styles/breakpoints"
 
 const Glow = css<{ glow: boolean }>`
   ${({ glow }) =>
@@ -43,9 +44,15 @@ const GlowingGesture = styled.div<{ glow: boolean }>`
 `
 
 const Description = styled.h3`
+  --size: 1.3rem;
+
   color: var(--white);
   margin-top: 2rem;
-  font-size: 1.3rem;
+  font-size: var(--size);
+
+  @media ${device.tablet} {
+    --size: 2rem;
+  }
 `
 
 const SelectedGesture = () => {

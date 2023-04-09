@@ -55,8 +55,8 @@ const GestureContainer = styled.div<StyleProps>`
           --border-size: 1.1rem;
 
           @media ${device.tablet} {
-            --size: 5rem;
-            --border-size: 1.4rem;
+            --size: 8rem;
+            --border-size: 2rem;
           }
         `
       : css`
