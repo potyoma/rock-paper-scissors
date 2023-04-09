@@ -13,7 +13,9 @@ const PlayAgainContainer = styled.div`
 
 const Description = styled.h2`
   color: var(--white);
-  font-size: 2rem;
+  font-size: 2.5rem;
+  line-height: 2rem;
+  margin: 1rem;
 `
 
 const PlayAgain = () => {
