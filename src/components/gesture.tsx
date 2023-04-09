@@ -92,7 +92,7 @@ const Gesture: React.FC<Props> = ({ gesture, size, onSelect }) => {
   return (
     <Button onClick={() => onSelect?.(gesture)} disabled={!onSelect}>
       <GestureContainer size={size} gesture={gesture} disabled={!onSelect}>
-        {image && <GestureImage src={image} />}
+        {image && <GestureImage src={image} alt={`${gesture} gesture`} />}
       </GestureContainer>
     </Button>
   )

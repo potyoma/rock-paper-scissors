@@ -10,7 +10,10 @@ const StyledRules = styled.div`
 const RulesModal: React.FC<ModalProps> = props => (
   <Modal {...props} header="rules">
     <StyledRules>
-      <img src={rules} />
+      <img
+        src={rules}
+        alt="Rule set for 'Rock, Paper, Scissors, Lizard, Spock'"
+      />
     </StyledRules>
   </Modal>
 )
