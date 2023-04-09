@@ -4,12 +4,12 @@
   "start_URL": "https://rock-paper-scissors-jade-zeta.vercel.app",
   "icons": [
     {
-      "src": "https://rock-paper-scissors-jade-zeta.vercel.app/logo.svg",
+      "src": "https://rock-paper-scissors-jade-zeta.vercel.app/logo-192.png",
       "sizes": "192x192",
       "type": "image/svg+xml"
     },
     {
-      "src": "https://rock-paper-scissors-jade-zeta.vercel.app/logo.svg",
+      "src": "https://rock-paper-scissors-jade-zeta.vercel.app/logo-512.png",
       "sizes": "512x512",
       "type": "image/svg+xml"
     }
