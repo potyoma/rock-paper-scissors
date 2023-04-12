@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import Button from "./button"
-import { device } from "../styles/breakpoints"
+import Button from "../core/button"
+import { device } from "../../styles/breakpoints"
 
 interface Props {
   onClick: () => void

@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import rules from "../assets/image-rules-bonus.svg"
-import Modal, { ModalProps } from "./modal"
+import rules from "../../assets/image-rules-bonus.svg"
+import Modal, { ModalProps } from "../core/modal"
 
 const StyledRules = styled.div`
   text-align: center;

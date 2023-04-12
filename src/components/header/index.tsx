@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Score from "./score"
-import { device } from "../styles/breakpoints"
+import { device } from "../../styles/breakpoints"
 import Logo from "./logo"
 
 const StyledHeader = styled.div`

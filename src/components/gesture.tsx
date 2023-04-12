@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import Button from "./button"
+import Button from "./core/button"
 import { useEffect, useState } from "react"
 import { device } from "../styles/breakpoints"
 

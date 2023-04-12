@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { ScoreContext } from "../contexts/scoreContext"
+import { ScoreContext } from "../../contexts/scoreContext"
 
 const StyledScore = styled.div`
   background-color: var(--white);

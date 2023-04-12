@@ -1,9 +1,9 @@
 import React, { HTMLProps, ReactNode, useEffect, useId, useRef } from "react"
 import styled, { css } from "styled-components"
 import CloseButton from "./closeButton"
-import useMediaQuery from "../hooks/useMediaQuery"
-import { device } from "../styles/breakpoints"
-import useClickOutside from "../hooks/useClickOutside"
+import useMediaQuery from "../../hooks/useMediaQuery"
+import { device } from "../../styles/breakpoints"
+import useClickOutside from "../../hooks/useClickOutside"
 
 interface StyleProps {
   isOpen: boolean

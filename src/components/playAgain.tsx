@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import withFadeShow from "../hoks/withFadeShow"
 import { GameContext, GameStage } from "../contexts/gameContext"
-import Button from "./button"
+import Button from "./core/button"
 import { useContext, useEffect, useState } from "react"
 import { GameResult } from "../core"
 import { device } from "../styles/breakpoints"
