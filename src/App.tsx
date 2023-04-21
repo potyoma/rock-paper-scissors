@@ -5,7 +5,6 @@ import { ScoreProvider } from "./contexts/scoreContext"
 import RulesButton from "./components/rules/rulesButton"
 import RulesModal from "./components/rules/rulesModal"
 import { GameProvider } from "./contexts/gameContext"
-import styled from "styled-components"
 import GestureSelect from "./components/gestureSelect"
 import SelectedGesture from "./components/selectedGesture"
 import PlayAgain from "./components/playAgain"
@@ -18,16 +17,16 @@ function App() {
     <div>
       <GlobalStyles />
       <ScoreProvider>
-        <Header />
         <GameProvider>
           <GameContainer>
+            <Header />
             <GestureSelect />
             <SelectedGesture />
             <PlayAgain />
+            <RulesButton onClick={() => setShowRules(!showRules)} />
           </GameContainer>
         </GameProvider>
       </ScoreProvider>
-      <RulesButton onClick={() => setShowRules(!showRules)} />
       <RulesModal isOpen={showRules} onClose={() => setShowRules(false)} />
     </div>
   )

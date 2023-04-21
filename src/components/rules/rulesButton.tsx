@@ -7,24 +7,13 @@ interface Props {
 }
 
 const StyledRulesButton = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-
   @media ${device.tablet} {
-    bottom: 2rem;
-    right: 2rem;
-    left: auto;
+    margin-inline: 2rem;
+    align-self: flex-end;
   }
 
   @media ${device.desktop} {
-    bottom: 3rem;
-    right: 3rem;
-    left: auto;
+    margin-inline: 3rem;
   }
 `
 

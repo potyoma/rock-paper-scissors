@@ -4,22 +4,26 @@ import { GameContext, GameStage } from "../contexts/gameContext"
 import background from "../assets/bg-pentagon.svg"
 import Gesture from "./gesture"
 import withFadeShow from "../hoks/withFadeShow"
+import { device } from "../styles/breakpoints"
 
 const GestureContainer = styled.div`
-  background-image: url(${background});
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url(${background}) no-repeat center;
   background-size: 85%;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-`
 
-const FirstRow = styled.div`
-  z-index: 2;
+  --cont-width: 22rem;
+  --cont-height: 22rem;
+
+  width: var(--cont-width);
+  height: var(--cont-height);
+
+  @media ${device.tablet} {
+    --cont-width: 38rem;
+    --cont-height: 46rem;
+  }
 `
 
 const MiddleRow = styled.div`
@@ -42,9 +46,9 @@ const GestureSelect: React.FC = () => {
 
   return (
     <>
-      <FirstRow>
+      <div>
         <Gesture gesture="scissors" onSelect={handleSelect} />
-      </FirstRow>
+      </div>
       <MiddleRow>
         <Gesture gesture="spock" onSelect={handleSelect} />
         <Gesture gesture="paper" onSelect={handleSelect} />
