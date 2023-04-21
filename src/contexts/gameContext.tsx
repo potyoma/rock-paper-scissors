@@ -44,12 +44,12 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   useEffect(() => {
-    gesture &&
+    stage === GameStage.Selected &&
       setTimeout(() => {
         const compGesture = getComputerGesture()
         setComputerGesture(compGesture)
       }, 1000)
-  }, [gesture])
+  }, [stage])
 
   useEffect(() => {
     if (!computerGesture || !gesture) return
@@ -62,6 +62,7 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     switch (gameResult) {
       case GameResult.None:
         setStage(GameStage.Select)
+        setComputerGesture("")
         break
       case GameResult.Win:
         increment()
