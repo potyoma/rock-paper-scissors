@@ -50,6 +50,20 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
 
+### Technical solution
+
+The project was made from ground up with no usage of UI libraries and components. This approach required a number of custom solutions.
+
+1. Modal window.
+   For simplicity of handling closing events was created a custom React hook. The purpose of it is to listen to all mouse and keyboard (`Esc` key) happened 'outside of the component' and call the given function. The hook is reusable and pretty simple to use. Check out `src/hooks/useClickOutside.ts`
+3. Disappear animations
+   It's required for a component to slowly fade before disappearing from screen. For this specific purpose were created `useFade` hook and `withFadeShow` HOC. The work they do is to apply 'fade and disappear' effect to a given component. The hook sets animation start and timeout fot when the component shold disappear from screen.  
+4. Save data
+   The project requires user data to be saved. This means that after a page reload, the player must be able to see his previous score and kepp it. One of the possible solution fot it is to save the data to a `sessionStorage`. This way the score is saved between page reloads, but reset after the page was completely closed. `usePageUnload` hook listens for page nload event and saves data when the page is being reloaded. 
+5. Handle state
+   For simplicity of working with Game state I chose using React's context API. This way the data is being stored in one simple way and all components get it in a unified way. Also this approach allowed usage of `Compound components` pattern. The idea is simple. There's only one `Game` components which holds the data and defines functions for state update. Every Game state (Draw -> Computer's turn -> Result) is considered just a child of the main component and exist on the same level. The components simply get data from context API.
+   
+
 ### What I learned
 
 - CSS Variables
